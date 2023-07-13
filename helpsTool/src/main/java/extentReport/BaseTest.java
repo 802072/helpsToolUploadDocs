@@ -91,7 +91,7 @@ public class BaseTest {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
-
+			
 			break;
 
 		case "mobile":
@@ -165,10 +165,10 @@ public class BaseTest {
 		extentTest.assignCategory(m.getAnnotation(Test.class).groups());
 	}
 
-	@AfterTest
-	public void teardown() {
-		driver.close();
-	}
+//	@AfterTest
+//	public void teardown() {
+//		driver.close();
+//	}
 
 	public String captureScreenshot(String screenShotName) throws IOException {
 //		File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -186,7 +186,7 @@ public class BaseTest {
 
 		// Shutterbug Working Code
 		Files.createDirectories(Paths.get(System.getProperty("user.dir") + "/screenshots/"));
-		BufferedImage image = Shutterbug.shootPage(driver, Capture.FULL ,3000, true).getImage();
+		BufferedImage image = Shutterbug.shootPage(driver, Capture.FULL, true).getImage();
 		String dest = "./screenshots/" + screenShotName;
 		writeImage(image, "PNG", new File(dest));
 		return dest;

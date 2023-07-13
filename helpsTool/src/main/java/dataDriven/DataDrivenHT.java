@@ -8,17 +8,19 @@ import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellUtil;
 import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class DataDrivenHT {
 
+	@SuppressWarnings("deprecation")
 	public ArrayList<String> getData(String testcaseName, String sheetName) throws IOException {
 		ArrayList<String> a = new ArrayList<String>();
 
 		FileInputStream fis = new FileInputStream(
-				"C:\\Users\\802072\\eclipse-workspace1\\helpsTool\\src\\test\\resources\\testCases\\helpsToolDocUploadTC.xlsx");
+				"C:\\Users\\802072\\git\\helpsToolUploadDocs\\helpsTool\\src\\test\\resources\\testCases\\helpsToolDocUploadTC.xlsx");
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 		int sheets = workbook.getNumberOfSheets();
@@ -36,7 +38,7 @@ public class DataDrivenHT {
 				while (ce.hasNext()) {
 					Cell value = ce.next();
 
-					if (value.getStringCellValue().equalsIgnoreCase("Users")) {
+					if (value.getStringCellValue().equalsIgnoreCase("Test Steps ID")) {
 						column = k;
 					}
 
@@ -49,7 +51,7 @@ public class DataDrivenHT {
 
 					Row r = rows.next();
 
-					if (r.getCell(column).getStringCellValue().equalsIgnoreCase(testcaseName)) {
+					if (CellUtil.getCell(r, column).getStringCellValue().equalsIgnoreCase(testcaseName)) {
 						Iterator<Cell> cv = r.cellIterator();
 						while (cv.hasNext()) {
 							Cell c = cv.next();
@@ -74,4 +76,5 @@ public class DataDrivenHT {
 
 	public static void main(String[] args) throws IOException {
 	}
+	
 }

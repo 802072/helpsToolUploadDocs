@@ -20,11 +20,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -42,83 +44,97 @@ public class DocumentsUploadTest extends BaseTest {
 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	DataDrivenHT d = new DataDrivenHT();
 
-	@Test
-	public void login () throws InterruptedException, IOException {
-		driver.get("https://helps.vnshealth-test.mso.vnsny.org/");
+	@BeforeTest
+	public void OpenLoginPage() throws InterruptedException, IOException {
+		// open login page
 		ArrayList TS01 = d.getData("TS01", "TC01");
-		//driver.get((String) TS01.get(6));
-		
+		driver.get((String) TS01.get(6));
+		driver.get("https://helps.vnshealth-test.mso.vnsny.org/#!/login");
 		String log1 = (String) TS01.get(0) + " " + TS01.get(1);
 		extentTest.log(Status.PASS, log1,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log1 + ".jpg")).build());
 
-//		ArrayList TS0002 = d.getData("TS0002", "TC0038");
-//		String loginUrl = (String) TS0002.get(6);
-//		driver.get(loginUrl);
-//
-//		String description2 = (String) TS0002.get(0) + " " + TS0002.get(1);
-//		extentTest.log(Status.PASS, description2,
-//				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(description2 + ".jpg")).build());
-//
-//		ArrayList TS0003 = d.getData("TS0003", "TC0038");
-//		String enterBtn = (String) TS0003.get(5);
-//		WebElement enter = driver.findElement(By.xpath(enterBtn));
-//		enter.click();
-//
-//		String description3 = (String) TS0003.get(0) + " " + TS0003.get(1);
-//		extentTest.log(Status.PASS, description3,
-//				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(description3 + ".jpg")).build());
-//
-//		// enter username
-//		ArrayList TS0004 = d.getData("TS0004", "TC0038");
-//		String username = (String) TS0004.get(6);
-//		String unamePath = (String) TS0004.get(5);
-//		WebElement unameField = driver.findElement(By.xpath(unamePath));
-//		unameField.sendKeys(username);
-//
-//		String description4 = (String) TS0004.get(0) + " " + TS0004.get(1);
-//		extentTest.log(Status.PASS, description4,
-//				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(description4 + ".jpg")).build());
-//
-//		// enter password
-//		ArrayList TS0005 = d.getData("TS0005", "TC0038");
-//		String pwdPath = (String) TS0005.get(5);
-//		WebElement pwd = driver.findElement(By.xpath(pwdPath));
-//		String password = (String) TS0005.get(6);
-//		pwd.sendKeys(password);
-//
-//		String description5 = (String) TS0005.get(0) + " " + TS0005.get(1);
-//		extentTest.log(Status.PASS, description5,
-//				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(description5 + ".jpg")).build());
-//
-//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//
-//		// login
-//		ArrayList TS0006 = d.getData("TS0006", "TC0038");
-//		String signOnPath = (String) TS0006.get(5);
-//		WebElement signOn = driver.findElement(By.xpath(signOnPath));
-//		signOn.click();
-//		Thread.sleep(5000);
-//		String description6 = (String) TS0006.get(0) + " " + TS0006.get(1);
-//		extentTest.log(Status.PASS, description6,
-//				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(description6 + ".jpg")).build());
-//		Thread.sleep(5000);
+		// Click Login Button
+		ArrayList TS02 = d.getData("TS02", "TC01");
+		WebElement loginButton = driver.findElement(By.xpath((String) TS02.get(5)));
+		loginButton.click();
+		String log2 = (String) TS02.get(0) + " " + TS02.get(1);
+		extentTest.log(Status.PASS, log2,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log2 + ".jpg")).build());
 
 	}
 
-	@Test(priority = 2, dependsOnMethods = "login", dataProviderClass = DataProviderTestdata.class, dataProvider = "UploadFilePath")
+	public void login() throws InterruptedException, IOException {
+
+		// enter username
+		ArrayList TS03 = d.getData("TS03", "TC01");
+		WebElement userName = driver.findElement(By.xpath((String) TS03.get(5)));
+		userName.sendKeys((String) TS03.get(6));
+		String log3 = (String) TS03.get(0) + " " + TS03.get(1);
+		extentTest.log(Status.PASS, log3,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log3 + ".jpg")).build());
+
+		// click Next
+		ArrayList TS04 = d.getData("TS04", "TC01");
+		WebElement next = driver.findElement(By.xpath((String) TS04.get(5)));
+		next.click();
+		String log4 = (String) TS04.get(0) + " " + TS04.get(1);
+		extentTest.log(Status.PASS, log4,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log4 + ".jpg")).build());
+
+		// enter password
+		ArrayList TS05 = d.getData("TS05", "TC01");
+		WebElement pwd = driver.findElement(By.xpath((String) TS05.get(5)));
+		pwd.sendKeys((String) TS05.get(6));
+		String log5 = (String) TS05.get(0) + " " + TS05.get(1);
+		extentTest.log(Status.PASS, log5,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log5 + ".jpg")).build());
+
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		// click Signin
+		ArrayList TS06 = d.getData("TS06", "TC01");
+		WebElement signIn = driver.findElement(By.xpath((String) TS06.get(5)));
+		signIn.click();
+		Thread.sleep(5000);
+		String log6 = (String) TS06.get(0) + " " + TS06.get(1);
+		extentTest.log(Status.PASS, log6,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log6 + ".jpg")).build());
+
+		// Click Yes to "Stay Signed In?"
+		ArrayList TS07 = d.getData("TS07", "TC01");
+		WebElement no = driver.findElement(By.xpath((String) TS07.get(6)));
+		no.click();
+		Thread.sleep(5000);
+		String log7 = (String) TS07.get(0) + " " + TS07.get(1);
+		extentTest.log(Status.PASS, log7,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log7 + ".jpg")).build());
+
+	}
+
+	@Test(priority = 2, dataProviderClass = DataProviderTestdata.class, dataProvider = "UploadFilePath")
 	public void verifyDocumentUpload(String Path, String fileName)
 			throws InterruptedException, IOException, AWTException {
+		login();
+		// Click Import HCS Assessment
+		ArrayList TS08 = d.getData("TS08", "TC01");
+		WebElement importBtn = driver.findElement(By.xpath((String) TS08.get(5)));
+		String log8 = (String) TS08.get(0) + " " + TS08.get(1);
+		extentTest.log(Status.PASS, log8,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log8 + ".jpg")).build());
+		importBtn.click();
+		Thread.sleep(5000);
 
-		// Upload Files
-		ArrayList TS0013 = d.getData("TS0013", "TC0038");
-		String uploadBtnPath = (String) TS0013.get(5);
-		WebElement uploadBtn = driver.findElement(By.xpath(uploadBtnPath));
-		String description13 = (String) TS0013.get(0) + " " + TS0013.get(1);
-		extentTest.log(Status.PASS, description13,
-				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(description13 + ".jpg")).build());
-		uploadBtn.click();
+		// Click Choose File
+		ArrayList TS09 = d.getData("TS09", "TC01");
+		WebElement chooseFileBtn = driver.findElement(By.xpath((String) TS09.get(5)));
+		String log9 = (String) TS09.get(0) + " " + TS09.get(1);
+		extentTest.log(Status.PASS, "Choose File: " + fileName,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log9 + ".jpg")).build());
+		Actions builder = new Actions(driver);
+		builder.moveToElement(chooseFileBtn).click().build().perform();
 
+		// Upload Function
 		Thread.sleep(5000);
 		Robot rb = new Robot();
 		StringSelection str = new StringSelection(Path);
@@ -138,18 +154,122 @@ public class DocumentsUploadTest extends BaseTest {
 		rb.keyPress(KeyEvent.VK_ENTER);
 		rb.keyRelease(KeyEvent.VK_ENTER);
 
-		// Thread.sleep(5000);
+		Thread.sleep(5000);
+		// Click Submit File
+		ArrayList TS11 = d.getData("TS11", "TC01");
+		WebElement submitBtn = driver.findElement(By.xpath((String) TS11.get(5)));
+		submitBtn.click();
+		String log11 = (String) TS11.get(0) + " " + TS11.get(1);
+		extentTest.log(Status.PASS, "Submit File: " + fileName,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log11 + ".jpg")).build());
 
 		Thread.sleep(5000);
-		ArrayList TS0014 = d.getData("TS0014", "TC0038");
+		// Click Patient Info Menu
+		ArrayList TS12 = d.getData("TS12", "TC01");
+		WebElement patientInfoMenu = driver.findElement(By.xpath((String) TS12.get(5)));
+		patientInfoMenu.click();
+		String log12 = (String) TS12.get(0) + " " + TS12.get(1);
+		extentTest.log(Status.PASS, log12,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log12 + ".jpg")).build());
 
-		String desPath = (String) TS0014.get(5);
-		WebElement desc = driver.findElement(By.xpath(desPath));
-		desc.sendKeys(fileName);
-		String description14 = (String) TS0014.get(0) + " " + TS0014.get(1);
-		extentTest.log(Status.PASS, description14,
-				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(description14 + ".jpg")).build());
+		// Click AUS Assessment Menu
+		ArrayList TS13 = d.getData("TS13", "TC01");
+		WebElement AUSAssessmntMenu = driver.findElement(By.xpath((String) TS13.get(5)));
+		AUSAssessmntMenu.click();
+		String log13 = (String) TS13.get(0) + " " + TS13.get(1);
+		extentTest.log(Status.PASS, log13,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log13 + ".jpg")).build());
+
+		// Click IADL Capacity Menu
+		ArrayList TS14 = d.getData("TS14", "TC01");
+		WebElement IADLCapMenu = driver.findElement(By.xpath((String) TS14.get(5)));
+		IADLCapMenu.click();
+		String log14 = (String) TS14.get(0) + " " + TS14.get(1);
+		extentTest.log(Status.PASS, log14,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log14 + ".jpg")).build());
+
+		// Click ADL Self Performance
+		ArrayList TS15 = d.getData("TS15", "TC01");
+		WebElement ADLSelfPerfMenu = driver.findElement(By.xpath((String) TS15.get(5)));
+		ADLSelfPerfMenu.click();
+		String log15 = (String) TS15.get(0) + " " + TS15.get(1);
+		extentTest.log(Status.PASS, log15,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log15 + ".jpg")).build());
+
+		// Click Final Recommendation
+		ArrayList TS16 = d.getData("TS16", "TC01");
+		WebElement finalRecMenu = driver.findElement(By.xpath((String) TS16.get(5)));
+		finalRecMenu.click();
+		String log16 = (String) TS16.get(0) + " " + TS16.get(1);
+		extentTest.log(Status.PASS, log16,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log16 + ".jpg")).build());
+
+		// Draw Sign
+		ArrayList TS17 = d.getData("TS17", "TC01");
+		WebElement canvas = driver.findElement(By.xpath((String) TS17.get(5)));
+		Actions action = new Actions(driver);
+		 action.clickAndHold(canvas).moveByOffset(200,
+		 0).release().build().perform();
+		//Action drawSign = action.moveToElement(canvas, 200, 0).clickAndHold().moveByOffset(200, 2).click().build();
+		//drawSign.perform();
 
 		Thread.sleep(5000);
+		String log17 = (String) TS17.get(0) + " " + TS17.get(1);
+		extentTest.log(Status.PASS, log17,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log17 + ".jpg")).build());
+
+		// Accept Sign
+		ArrayList TS18 = d.getData("TS18", "TC01");
+		WebElement acceptSign = driver.findElement(By.xpath((String) TS18.get(5)));
+		acceptSign.click();
+		String log18 = (String) TS18.get(0) + " " + TS18.get(1);
+		extentTest.log(Status.PASS, log18,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log18 + ".jpg")).build());
+
+		// Complete Assessment
+		ArrayList TS19 = d.getData("TS19", "TC01");
+		WebElement completeAssessmnt = driver.findElement(By.xpath((String) TS19.get(5)));
+		completeAssessmnt.click();
+		String log19 = (String) TS19.get(0) + " " + TS19.get(1);
+		extentTest.log(Status.PASS, log19,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log19 + ".jpg")).build());
+
+		System.out.println("Complete button clicked");
+		Thread.sleep(5000);
+
+		// Click Welcome Button
+		ArrayList TS20 = d.getData("TS20", "TC01");
+		WebElement welcome = driver.findElement(By.xpath((String) TS20.get(5)));
+		welcome.click();
+		String log20 = (String) TS20.get(0) + " " + TS20.get(1);
+		extentTest.log(Status.PASS, log20,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log20 + ".jpg")).build());
+
+		// Select sign out
+		ArrayList TS21 = d.getData("TS21", "TC01");
+		WebElement signOut = driver.findElement(By.xpath((String) TS21.get(5)));
+		signOut.click();
+		Thread.sleep(7000);
+		String log21 = (String) TS21.get(0) + " " + TS21.get(1);
+		extentTest.log(Status.PASS, log21,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log21 + ".jpg")).build());
+
+		// Click Login Button
+		ArrayList TS22 = d.getData("TS22", "TC01");
+		WebElement loginButton = driver.findElement(By.xpath((String) TS22.get(5)));
+		loginButton.click();
+		Thread.sleep(3000);
+		String log22 = (String) TS22.get(0) + " " + TS22.get(1);
+		extentTest.log(Status.PASS, log22,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log22 + ".jpg")).build());
+
+		// Click Use Another Account
+		ArrayList TS23 = d.getData("TS23", "TC01");
+		WebElement useAnotherAcc = driver.findElement(By.xpath((String) TS23.get(5)));
+		useAnotherAcc.click();
+		String log2 = (String) TS23.get(0) + " " + TS23.get(1);
+		extentTest.log(Status.PASS, log2,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log2 + ".jpg")).build());
+
 	}
 }
