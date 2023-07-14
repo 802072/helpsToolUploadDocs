@@ -42,6 +42,7 @@ import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -91,7 +92,7 @@ public class BaseTest {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
-			
+
 			break;
 
 		case "mobile":
@@ -125,27 +126,42 @@ public class BaseTest {
 		// extentTest.assignDevice(device);
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	public void login() throws InterruptedException, IOException {
 		// open login page
-		ArrayList TS01 = d.getData("TS01", "TC01");
+		ArrayList TS01 = d.getData("TS01", "TC");
 		driver.get((String) TS01.get(6));
-		driver.get("https://helps.vnshealth-test.mso.vnsny.org/#!/login");
+		Thread.sleep(5000);
 		String log1 = (String) TS01.get(0) + " " + TS01.get(1);
 		extentTest.log(Status.PASS, log1,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log1 + ".jpg")).build());
 
 		// Click Login Button
-		ArrayList TS02 = d.getData("TS02", "TC01");
+		ArrayList TS02 = d.getData("TS02", "TC");
 		WebElement loginButton = driver.findElement(By.xpath((String) TS02.get(5)));
 		loginButton.click();
 		String log2 = (String) TS02.get(0) + " " + TS02.get(1);
 		extentTest.log(Status.PASS, log2,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log2 + ".jpg")).build());
+		
+		try {
+		ArrayList TS03A = d.getData("TS03A", "TC");
+		WebElement useAnotherAcc = driver.findElement(By.xpath((String) TS03A.get(5)));
+		if (useAnotherAcc.isDisplayed()) {
+		
+			// Click Use Another Account
+		useAnotherAcc.click();
+		String log23 = (String) TS03A.get(0) + " " + TS03A.get(1);
+		extentTest.log(Status.PASS, log23,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log23 + ".jpg")).build());
+		}
+		}
+		catch (Exception e) {
 	}
-
-	public void login() throws InterruptedException, IOException {
-
+		
 		// enter username
-		ArrayList TS03 = d.getData("TS03", "TC01");
+		ArrayList TS03 = d.getData("TS03", "TC");
 		WebElement userName = driver.findElement(By.xpath((String) TS03.get(5)));
 		userName.sendKeys((String) TS03.get(6));
 		String log3 = (String) TS03.get(0) + " " + TS03.get(1);
@@ -153,7 +169,7 @@ public class BaseTest {
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log3 + ".jpg")).build());
 
 		// click Next
-		ArrayList TS04 = d.getData("TS04", "TC01");
+		ArrayList TS04 = d.getData("TS04", "TC");
 		WebElement next = driver.findElement(By.xpath((String) TS04.get(5)));
 		next.click();
 		String log4 = (String) TS04.get(0) + " " + TS04.get(1);
@@ -161,7 +177,7 @@ public class BaseTest {
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log4 + ".jpg")).build());
 
 		// enter password
-		ArrayList TS05 = d.getData("TS05", "TC01");
+		ArrayList TS05 = d.getData("TS05", "TC");
 		WebElement pwd = driver.findElement(By.xpath((String) TS05.get(5)));
 		pwd.sendKeys((String) TS05.get(6));
 		String log5 = (String) TS05.get(0) + " " + TS05.get(1);
@@ -171,7 +187,7 @@ public class BaseTest {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		// click Signin
-		ArrayList TS06 = d.getData("TS06", "TC01");
+		ArrayList TS06 = d.getData("TS06", "TC");
 		WebElement signIn = driver.findElement(By.xpath((String) TS06.get(5)));
 		signIn.click();
 		Thread.sleep(5000);
@@ -180,7 +196,7 @@ public class BaseTest {
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log6 + ".jpg")).build());
 
 		// Click Yes to "Stay Signed In?"
-		ArrayList TS07 = d.getData("TS07", "TC01");
+		ArrayList TS07 = d.getData("TS07", "TC");
 		WebElement no = driver.findElement(By.xpath((String) TS07.get(6)));
 		no.click();
 		Thread.sleep(5000);
@@ -188,7 +204,9 @@ public class BaseTest {
 		extentTest.log(Status.PASS, log7,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log7 + ".jpg")).build());
 
+
 	}
+
 
 	
 	@BeforeSuite
