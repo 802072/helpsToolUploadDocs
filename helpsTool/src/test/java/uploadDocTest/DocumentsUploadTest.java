@@ -63,7 +63,7 @@ public class DocumentsUploadTest extends BaseTest {
 
 	// File Sample-2
 	@Test
-	public void verifyUploadSample2() throws InterruptedException, IOException, AWTException {
+	public void verifyInfoSample2() throws InterruptedException, IOException, AWTException {
 		login();
 		ArrayList filenameRow = d.getData("FileName", "TC");
 		String fileName = (String) filenameRow.get(2);
