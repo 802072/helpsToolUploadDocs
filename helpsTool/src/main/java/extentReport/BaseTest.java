@@ -5,6 +5,8 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
+import static org.testng.Assert.assertEquals;
+
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.Robot;
@@ -43,6 +45,7 @@ import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -130,89 +133,85 @@ public class BaseTest {
 
 	public void login() throws InterruptedException, IOException {
 		// open login page
-		ArrayList TS01 = d.getData("TS01", "TC");
-		driver.get((String) TS01.get(6));
+		ArrayList LI001 = d.getData("LI001", "beforeTest");
+		driver.get((String) LI001.get(6));
 		Thread.sleep(5000);
-		String log1 = (String) TS01.get(0) + " " + TS01.get(1);
+		String log1 = (String) LI001.get(0) + " " + LI001.get(1);
 		extentTest.log(Status.PASS, log1,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log1 + ".jpg")).build());
 
 		// Click Login Button
-		ArrayList TS02 = d.getData("TS02", "TC");
-		WebElement loginButton = driver.findElement(By.xpath((String) TS02.get(5)));
+		ArrayList LI002 = d.getData("LI002", "beforeTest");
+		WebElement loginButton = driver.findElement(By.xpath((String) LI002.get(5)));
 		loginButton.click();
-		String log2 = (String) TS02.get(0) + " " + TS02.get(1);
+		String log2 = (String) LI002.get(0) + " " + LI002.get(1);
 		extentTest.log(Status.PASS, log2,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log2 + ".jpg")).build());
-		
+
 		try {
-		ArrayList TS03A = d.getData("TS03A", "TC");
-		WebElement useAnotherAcc = driver.findElement(By.xpath((String) TS03A.get(5)));
-		if (useAnotherAcc.isDisplayed()) {
-		
-			// Click Use Another Account
-		useAnotherAcc.click();
-		String log23 = (String) TS03A.get(0) + " " + TS03A.get(1);
-		extentTest.log(Status.PASS, log23,
-				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log23 + ".jpg")).build());
+			ArrayList LI003A = d.getData("LI003A", "beforeTest");
+			WebElement useAnotherAcc = driver.findElement(By.xpath((String) LI003A.get(5)));
+			if (useAnotherAcc.isDisplayed()) {
+
+				// Click Use Another Account
+				useAnotherAcc.click();
+				String log3A = (String) LI003A.get(0) + " " + LI003A.get(1);
+				extentTest.log(Status.PASS, log3A,
+						MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log3A + ".jpg")).build());
+			}
+		} catch (Exception e) {
 		}
-		}
-		catch (Exception e) {
-	}
-		
+
 		// enter username
-		ArrayList TS03 = d.getData("TS03", "TC");
-		WebElement userName = driver.findElement(By.xpath((String) TS03.get(5)));
-		userName.sendKeys((String) TS03.get(6));
-		String log3 = (String) TS03.get(0) + " " + TS03.get(1);
+		ArrayList LI003 = d.getData("LI003", "beforeTest");
+		WebElement userName = driver.findElement(By.xpath((String) LI003.get(5)));
+		userName.sendKeys((String) LI003.get(6));
+		String log3 = (String) LI003.get(0) + " " + LI003.get(1);
 		extentTest.log(Status.PASS, log3,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log3 + ".jpg")).build());
 
 		// click Next
-		ArrayList TS04 = d.getData("TS04", "TC");
-		WebElement next = driver.findElement(By.xpath((String) TS04.get(5)));
+		ArrayList LI004 = d.getData("LI004", "beforeTest");
+		WebElement next = driver.findElement(By.xpath((String) LI004.get(5)));
 		next.click();
-		String log4 = (String) TS04.get(0) + " " + TS04.get(1);
+		String log4 = (String) LI004.get(0) + " " + LI004.get(1);
 		extentTest.log(Status.PASS, log4,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log4 + ".jpg")).build());
 
 		// enter password
-		ArrayList TS05 = d.getData("TS05", "TC");
-		WebElement pwd = driver.findElement(By.xpath((String) TS05.get(5)));
-		pwd.sendKeys((String) TS05.get(6));
-		String log5 = (String) TS05.get(0) + " " + TS05.get(1);
+		ArrayList LI005 = d.getData("LI005", "beforeTest");
+		WebElement pwd = driver.findElement(By.xpath((String) LI005.get(5)));
+		pwd.sendKeys((String) LI005.get(6));
+		String log5 = (String) LI005.get(0) + " " + LI005.get(1);
 		extentTest.log(Status.PASS, log5,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log5 + ".jpg")).build());
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		// click Signin
-		ArrayList TS06 = d.getData("TS06", "TC");
-		WebElement signIn = driver.findElement(By.xpath((String) TS06.get(5)));
+		ArrayList LI006 = d.getData("LI006", "beforeTest");
+		WebElement signIn = driver.findElement(By.xpath((String) LI006.get(5)));
 		signIn.click();
 		Thread.sleep(5000);
-		String log6 = (String) TS06.get(0) + " " + TS06.get(1);
+		String log6 = (String) LI006.get(0) + " " + LI006.get(1);
 		extentTest.log(Status.PASS, log6,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log6 + ".jpg")).build());
 
 		// Click Yes to "Stay Signed In?"
-		ArrayList TS07 = d.getData("TS07", "TC");
-		WebElement no = driver.findElement(By.xpath((String) TS07.get(6)));
+		ArrayList LI007 = d.getData("LI007", "beforeTest");
+		WebElement no = driver.findElement(By.xpath((String) LI007.get(6)));
 		no.click();
 		Thread.sleep(5000);
-		String log7 = (String) TS07.get(0) + " " + TS07.get(1);
+		String log7 = (String) LI007.get(0) + " " + LI007.get(1);
 		extentTest.log(Status.PASS, log7,
 				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log7 + ".jpg")).build());
 
-
 	}
 
-
-	
 	@BeforeSuite
 	public void initialiseExtentReports() {
 		ExtentSparkReporter sparkReporter_all = new ExtentSparkReporter("HelpsToolUploadDocuments.html");
-		sparkReporter_all.config().setReportName("Helps Tool Upload Document Automation Test Report");
+		sparkReporter_all.config().setReportName("Helps Tool: Verify Document Upload and Information Displayed");
 
 		extentReports = new ExtentReports();
 		extentReports.attachReporter(sparkReporter_all);
@@ -301,4 +300,630 @@ public class BaseTest {
 
 	}
 
+	@SuppressWarnings("rawtypes")
+	public void uploadAndSubmitFile(String fileName, String path)
+			throws InterruptedException, IOException, AWTException {
+		// Click Import HCS Assessment
+		ArrayList UF001 = d.getData("UF001", "beforeTest");
+		WebElement importBtn = driver.findElement(By.xpath((String) UF001.get(5)));
+		String log8 = (String) UF001.get(0) + " " + UF001.get(1);
+		extentTest.log(Status.PASS, log8,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log8 + ".jpg")).build());
+		importBtn.click();
+		Thread.sleep(5000);
+
+		// Click Choose File
+		ArrayList UF002 = d.getData("UF002", "beforeTest");
+		// String fileName = (String) UF002.get(6);
+		WebElement chooseFileBtn = driver.findElement(By.xpath((String) UF002.get(5)));
+		String log9 = (String) UF002.get(0) + " " + UF002.get(1);
+		extentTest.log(Status.PASS, (String) UF002.get(0) + " Choose File: " + fileName,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log9 + ".jpg")).build());
+
+		// log Upload File
+		ArrayList UF003 = d.getData("UF003", "beforeTest");
+		// String path= (String) UF003.get(6);
+		String log10 = (String) UF003.get(0) + " " + UF003.get(1);
+		extentTest.log(Status.PASS, (String) UF003.get(0) + " " + UF003.get(1) + " " + fileName,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log10 + ".jpg")).build());
+
+		Actions builder = new Actions(driver);
+		builder.moveToElement(chooseFileBtn).click().build().perform();
+
+		// Upload Function
+		Thread.sleep(5000);
+		Robot rb = new Robot();
+		StringSelection str = new StringSelection(path);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
+		Thread.sleep(5000);
+
+		// press Contol+V for pasting
+		rb.keyPress(KeyEvent.VK_CONTROL);
+		rb.keyPress(KeyEvent.VK_V);
+		Thread.sleep(2000);
+
+		// release Contol+V for pasting
+		rb.keyRelease(KeyEvent.VK_CONTROL);
+		rb.keyRelease(KeyEvent.VK_V);
+		Thread.sleep(2000);
+
+		// for pressing and releasing Enter
+		rb.keyPress(KeyEvent.VK_ENTER);
+		rb.keyRelease(KeyEvent.VK_ENTER);
+
+		Thread.sleep(5000);
+
+		// Click Submit File
+		ArrayList UF004 = d.getData("UF004", "beforeTest");
+		WebElement submitBtn = driver.findElement(By.xpath((String) UF004.get(5)));
+		submitBtn.click();
+		String log11 = (String) UF004.get(0) + " " + UF004.get(1);
+		extentTest.log(Status.PASS, (String) UF004.get(0) + " Submit File: " + fileName,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log11 + ".jpg")).build());
+
+		Thread.sleep(5000);
+
+	}
+	
+	
+	public void verifyInfo(String sheetName) throws InterruptedException, IOException, AWTException {
+
+		// First Name
+		ArrayList TS001 = d.getData("TS001", sheetName);
+		WebElement firstName = driver.findElement(By.xpath((String) TS001.get(6)));
+		assertEquals((String) TS001.get(7), firstName.getAttribute("value"));
+		String log1 = (String) TS001.get(0) + " " + TS001.get(2);
+		extentTest.log(Status.PASS, log1 + ": Expected Value is " + (String) TS001.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log1 + ".jpg")).build());
+
+		// Last Name
+		ArrayList TS002 = d.getData("TS002", sheetName);
+		WebElement lastName = driver.findElement(By.xpath((String) TS002.get(6)));
+		assertEquals((String) TS002.get(7), lastName.getAttribute("value"));
+		String log2 = (String) TS002.get(0) + " " + TS002.get(2);
+		extentTest.log(Status.PASS, log2 + ": Expected Value is " + (String) TS002.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log2 + ".jpg")).build());
+
+		// Verify Medicaid ID
+		ArrayList TS003 = d.getData("TS003", sheetName);
+		WebElement medicaidID = driver.findElement(By.xpath((String) TS003.get(6)));
+		assertEquals((String) TS003.get(7), medicaidID.getAttribute("value"));
+		String log3 = (String) TS003.get(0) + " " + TS003.get(2);
+		extentTest.log(Status.PASS, log3 + ": Expected Value is " + (String) TS003.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log3 + ".jpg")).build());
+
+		// Verify NFLOC
+		ArrayList TS004 = d.getData("TS004", sheetName);
+		WebElement NFLOC = driver.findElement(By.xpath((String) TS004.get(6)));
+		assertEquals((String) TS004.get(7), NFLOC.getAttribute("value"));
+		String log4 = (String) TS004.get(0) + " " + TS004.get(2);
+		extentTest.log(Status.PASS, log4 + ": Expected Value is " + (String) TS004.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log4 + ".jpg")).build());
+
+		// Verify Date of Assessment
+		ArrayList TS005 = d.getData("TS005", sheetName);
+		WebElement dateOfAssessment = driver.findElement(By.xpath((String) TS005.get(6)));
+		String expectDate= "11/07/22";
+		assertEquals(dateOfAssessment.getAttribute("value"), expectDate );
+		String log5 = (String) TS005.get(0) + " " + TS005.get(2);
+		extentTest.log(Status.PASS, log5 + ": Expected Value is " + expectDate,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log5 + ".jpg")).build());
+
+		// Verify Nurse Assessor
+		ArrayList TS006 = d.getData("TS006", sheetName);
+		WebElement nurseAssessor = driver.findElement(By.xpath((String) TS006.get(6)));
+		assertEquals((String) TS006.get(7), nurseAssessor.getAttribute("value"));
+		String log6 = (String) TS006.get(0) + " " + TS006.get(2);
+		extentTest.log(Status.PASS, log6 + ": Expected Value is " + (String) TS006.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log6 + ".jpg")).build());
+
+		// Verify Assessment Reason
+		ArrayList TS007 = d.getData("TS007", sheetName);
+		WebElement assessmentReason = driver.findElement(By.xpath((String) TS007.get(6)));
+		assessmentReason.click();
+		String log7 = (String) TS007.get(0) + " " + TS007.get(2);
+		extentTest.log(Status.PASS, log7 + ": Expected Value is " + (String) TS007.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log7 + ".jpg")).build());
+		
+		
+		// Click Mutual Case Dropdown
+		ArrayList TS008 = d.getData("TS008", sheetName);
+		WebElement mutualCase = driver.findElement(By.xpath((String) TS008.get(6)));
+		mutualCase.click();
+		String log8 = (String) TS008.get(0) + " " + TS008.get(2);
+		extentTest.log(Status.PASS, log8,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log8 + ".jpg")).build());
+
+		// Select Yes from Mutual Case Dropdown
+		ArrayList TS009 = d.getData("TS009", sheetName);
+		WebElement yes = driver.findElement(By.xpath((String) TS009.get(6)));
+		yes.click();
+		String log9 = (String) TS009.get(0) + " " + TS009.get(2);
+		extentTest.log(Status.PASS, log9 + ": Expected Value is " + (String) TS009.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log9 + ".jpg")).build());
+
+		// Type '12345' into the Mutual Case Medicaid ID field.
+		ArrayList TS010 = d.getData("TS010", sheetName);
+		WebElement mutualCaseMedID = driver.findElement(By.xpath((String) TS010.get(6)));
+		mutualCaseMedID.sendKeys((String) TS010.get(7));
+		String log10 = (String) TS010.get(0) + " " + TS010.get(2);
+		extentTest.log(Status.PASS, log10 + ": Expected Value is " + (String) TS010.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log10 + ".jpg")).build());
+
+		// Verify dropdown value for Cognitive Skills for Daily Decision Making
+		ArrayList TS011 = d.getData("TS011", sheetName);
+		WebElement cognitiveSkillDM = driver.findElement(By.xpath((String) TS011.get(6)));
+		cognitiveSkillDM.click();
+		String log11 = (String) TS011.get(0) + " " + TS011.get(2);
+		extentTest.log(Status.PASS, log11 + ": Expected Value is " + (String) TS011.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log11 + ".jpg")).build());
+
+		// Verify dropdown value for Psychiatric Anxiety
+		ArrayList TS012 = d.getData("TS012", sheetName);
+		WebElement psychiatricAnxiety = driver.findElement(By.xpath((String) TS012.get(6)));
+		psychiatricAnxiety.click();
+		String log12 = (String) TS012.get(0) + " " + TS012.get(2);
+		extentTest.log(Status.PASS, log12 + ": Expected Value is " + (String) TS012.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log12 + ".jpg")).build());
+
+		// Verify dropdown value for Wandering
+		ArrayList TS013 = d.getData("TS013", sheetName);
+		WebElement wandering = driver.findElement(By.xpath((String) TS013.get(6)));
+		wandering.click();
+		String log13 = (String) TS013.get(0) + " " + TS013.get(2);
+		extentTest.log(Status.PASS, log13 + ": Expected Value is " + (String) TS013.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log13 + ".jpg")).build());
+
+		// Verify dropdown value for Psychiatric Depression
+		ArrayList TS014 = d.getData("TS014", sheetName);
+		WebElement psychiatricDepression = driver.findElement(By.xpath((String) TS014.get(6)));
+		psychiatricDepression.click();
+		String log14 = (String) TS014.get(0) + " " + TS014.get(2);
+		extentTest.log(Status.PASS, log14 + ": Expected Value is " + (String) TS014.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log14 + ".jpg")).build());
+
+		// Verify dropdown value for Verbal Abuse
+		ArrayList TS015 = d.getData("TS015", sheetName);
+		WebElement verbalAbuse = driver.findElement(By.xpath((String) TS015.get(6)));
+		verbalAbuse.click();
+		String log15 = (String) TS015.get(0) + " " + TS015.get(2);
+		extentTest.log(Status.PASS, log15 + ": Expected Value is " + (String) TS015.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log15 + ".jpg")).build());
+
+		// Verify dropdown value for Psychiatric Schizophrenia
+		ArrayList TS016 = d.getData("TS016", sheetName);
+		WebElement psychiatricSchizophrenia = driver.findElement(By.xpath((String) TS016.get(6)));
+		psychiatricSchizophrenia.click();
+		String log16 = (String) TS016.get(0) + " " + TS016.get(2);
+		extentTest.log(Status.PASS, log16 + ": Expected Value is " + (String) TS016.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log16 + ".jpg")).build());
+
+		// Verify dropdown value for Physical Abuse
+		ArrayList TS017 = d.getData("TS017", sheetName);
+		WebElement physicalAbuse = driver.findElement(By.xpath((String) TS017.get(6)));
+		physicalAbuse.click();
+		String log17 = (String) TS017.get(0) + " " + TS017.get(2);
+		extentTest.log(Status.PASS, log17 + ": Expected Value is " + (String) TS017.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log17 + ".jpg")).build());
+
+		// Verify dropdown value for Dyspnea
+		ArrayList TS018 = d.getData("TS018", sheetName);
+		WebElement dyspnea = driver.findElement(By.xpath((String) TS018.get(6)));
+		dyspnea.click();
+		String log18 = (String) TS018.get(0) + " " + TS018.get(2);
+		extentTest.log(Status.PASS, log18 + ": Expected Value is " + (String) TS018.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log18 + ".jpg")).build());
+
+		// Verify dropdown value for Socially inappropriate or disruptive behavior
+		ArrayList TS019 = d.getData("TS019", sheetName);
+		WebElement sociallyInappBehv = driver.findElement(By.xpath((String) TS019.get(6)));
+		sociallyInappBehv.click();
+		String log19 = (String) TS019.get(0) + " " + TS019.get(2);
+		extentTest.log(Status.PASS, log19 + ": Expected Value is " + (String) TS019.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log19 + ".jpg")).build());
+
+		// Verify dropdown value for Fatigue
+		ArrayList TS020 = d.getData("TS020", sheetName);
+		WebElement fatigue = driver.findElement(By.xpath((String) TS020.get(6)));
+		fatigue.click();
+		String log20 = (String) TS020.get(0) + " " + TS020.get(2);
+		extentTest.log(Status.PASS, log20 + ": Expected Value is " + (String) TS020.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log20 + ".jpg")).build());
+
+		// Verify dropdown value for Inappropriate public sexual behavior or public
+		// disrobing
+		ArrayList TS021 = d.getData("TS021", sheetName);
+		WebElement inappSexualBehv = driver.findElement(By.xpath((String) TS021.get(6)));
+		inappSexualBehv.click();
+		String log21 = (String) TS021.get(0) + " " + TS021.get(2);
+		extentTest.log(Status.PASS, log21 + ": Expected Value is " + (String) TS021.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log21 + ".jpg")).build());
+
+		// Verify dropdown value for Pain
+		ArrayList TS022 = d.getData("TS022", sheetName);
+		WebElement pain = driver.findElement(By.xpath((String) TS022.get(6)));
+		pain.click();
+		String log22 = (String) TS022.get(0) + " " + TS022.get(2);
+		extentTest.log(Status.PASS, log22 + ": Expected Value is " + (String) TS022.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log22 + ".jpg")).build());
+
+		// Verify dropdown value for Resist care
+		ArrayList TS023 = d.getData("TS023", sheetName);
+		WebElement resistCare = driver.findElement(By.xpath((String) TS023.get(6)));
+		resistCare.click();
+		String log23 = (String) TS023.get(0) + " " + TS023.get(2);
+		extentTest.log(Status.PASS, log23 + ": Expected Value is " + (String) TS023.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log23 + ".jpg")).build());
+
+		// Verify the dropdown value for the Meal Preparation IADL
+		ArrayList TS024 = d.getData("TS024", sheetName);
+		WebElement mealPrepIADL = driver.findElement(By.xpath((String) TS024.get(6)));
+		mealPrepIADL.click();
+		String log24 = (String) TS024.get(0) + " " + TS024.get(2);
+		extentTest.log(Status.PASS, log24 + ": Expected Value is " + (String) TS024.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log24 + ".jpg")).build());
+
+		// Verify the Weekly Total Minutes assigned to the Meal Preparation IADL
+		ArrayList TS025 = d.getData("TS025", sheetName);
+		WebElement weeklyTotalMinsMeal = driver.findElement(By.xpath((String) TS025.get(6)));
+		assertEquals((String) TS025.get(7), weeklyTotalMinsMeal.getAttribute("value"));
+		String log25 = (String) TS025.get(0) + " " + TS025.get(2);
+		extentTest.log(Status.PASS, log25 + ": Expected Value is " + (String) TS025.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log25 + ".jpg")).build());
+
+		// Verify the dropdown value for the Ordinary Housework IADL
+		ArrayList TS026 = d.getData("TS026", sheetName);
+		WebElement houseworkIADL = driver.findElement(By.xpath((String) TS026.get(6)));
+		houseworkIADL.click();
+		String log26 = (String) TS026.get(0) + " " + TS026.get(2);
+		extentTest.log(Status.PASS, log26 + ": Expected Value is " + (String) TS026.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log26 + ".jpg")).build());
+
+		// Verify the Weekly Total Minutes assigned to the Ordinary Housework IADL
+		ArrayList TS027 = d.getData("TS027", sheetName);
+		WebElement weeklyTotalMinsHousework = driver.findElement(By.xpath((String) TS027.get(6)));
+		assertEquals((String) TS027.get(7), weeklyTotalMinsHousework.getAttribute("value"));
+		String log27 = (String) TS027.get(0) + " " + TS027.get(2);
+		extentTest.log(Status.PASS, log27 + ": Expected Value is " + (String) TS027.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log27 + ".jpg")).build());
+
+		// Verify the dropdown value for the Shopping IADL
+		ArrayList TS028 = d.getData("TS028", sheetName);
+		WebElement shoppingIADL = driver.findElement(By.xpath((String) TS028.get(6)));
+		shoppingIADL.click();
+		String log28 = (String) TS028.get(0) + " " + TS027.get(2);
+		extentTest.log(Status.PASS, log28 + ": Expected Value is " + (String) TS028.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log28 + ".jpg")).build());
+
+		// Verify the Weekly Total Minutes assigned to the Shopping IADL
+		ArrayList TS029 = d.getData("TS029", sheetName);
+		WebElement weeklyTotalMinsShopping = driver.findElement(By.xpath((String) TS029.get(6)));
+		assertEquals((String) TS029.get(7), weeklyTotalMinsShopping.getAttribute("value"));
+		String log29 = (String) TS029.get(0) + " " + TS029.get(2);
+		extentTest.log(Status.PASS, log29 + ": Expected Value is " + (String) TS029.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log29 + ".jpg")).build());
+
+		// Verify the dropdown value for the Bathing ADL
+		ArrayList TS030 = d.getData("TS030", sheetName);
+		WebElement bathingADL = driver.findElement(By.xpath((String) TS030.get(6)));
+		bathingADL.click();
+		String log30 = (String) TS030.get(0) + " " + TS030.get(2);
+		extentTest.log(Status.PASS, log30 + ": Expected Value is " + (String) TS030.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log30 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Bathing ADL
+		ArrayList TS031 = d.getData("TS031", sheetName);
+		WebElement dailyMinsbathingADL = driver.findElement(By.xpath((String) TS031.get(6)));
+		assertEquals((String) TS031.get(7), dailyMinsbathingADL.getAttribute("value"));
+		String log31 = (String) TS031.get(0) + " " + TS031.get(2);
+		extentTest.log(Status.PASS, log31 + ": Expected Value is " + (String) TS031.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log31 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Bathing ADL
+		ArrayList TS032 = d.getData("TS032", sheetName);
+		WebElement totalMinsbathingADL = driver.findElement(By.xpath((String) TS032.get(6)));
+		assertEquals((String) TS032.get(7), totalMinsbathingADL.getAttribute("value"));
+		String log32 = (String) TS032.get(0) + " " + TS032.get(2);
+		extentTest.log(Status.PASS, log32 + ": Expected Value is " + (String) TS032.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log32 + ".jpg")).build());
+
+		// Verify the dropdown value for the Personal Hygiene ADL
+		ArrayList TS033 = d.getData("TS033", sheetName);
+		WebElement personalHygADL = driver.findElement(By.xpath((String) TS033.get(6)));
+		personalHygADL.click();
+		String log33 = (String) TS033.get(0) + " " + TS033.get(2);
+		extentTest.log(Status.PASS, log33 + ": Expected Value is " + (String) TS033.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log33 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Personal Hygiene ADL
+		ArrayList TS034 = d.getData("TS034", sheetName);
+		WebElement dailyMinsPH = driver.findElement(By.xpath((String) TS034.get(6)));
+		assertEquals((String) TS034.get(7), dailyMinsPH.getAttribute("value"));
+		String log34 = (String) TS034.get(0) + " " + TS034.get(2);
+		extentTest.log(Status.PASS, log34 + ": Expected Value is " + (String) TS034.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log34 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Personal Hygiene ADL
+		ArrayList TS035 = d.getData("TS035", sheetName);
+		WebElement totalMinsPH = driver.findElement(By.xpath((String) TS035.get(6)));
+		assertEquals((String) TS035.get(7), totalMinsPH.getAttribute("value"));
+		String log35 = (String) TS035.get(0) + " " + TS035.get(2);
+		extentTest.log(Status.PASS, log35 + ": Expected Value is " + (String) TS035.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log35+ ".jpg")).build());
+
+		// Verify the dropdown value for the Dressing Upper Body ADL
+		ArrayList TS036 = d.getData("TS036", sheetName);
+		WebElement dressingUB = driver.findElement(By.xpath((String) TS036.get(6)));
+		dressingUB.click();
+		String log36 = (String) TS036.get(0) + " " + TS036.get(2);
+		extentTest.log(Status.PASS, log36 + ": Expected Value is " + (String) TS036.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log36 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Dressing Upper Body ADL
+		ArrayList TS037 = d.getData("TS037", sheetName);
+		WebElement dailyMinsDressingUB = driver.findElement(By.xpath((String) TS037.get(6)));
+		assertEquals((String) TS037.get(7), dailyMinsDressingUB.getAttribute("value"));
+		String log37 = (String) TS037.get(0) + " " + TS037.get(2);
+		extentTest.log(Status.PASS, log37 + ": Expected Value is " + (String) TS037.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log37 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Dressing Upper Body ADL
+		ArrayList TS038 = d.getData("TS038", sheetName);
+		WebElement totalMinsDressingUB = driver.findElement(By.xpath((String) TS038.get(6)));
+		assertEquals((String) TS038.get(7), totalMinsDressingUB.getAttribute("value"));
+		String log38 = (String) TS038.get(0) + " " + TS038.get(2);
+		extentTest.log(Status.PASS, log38 + ": Expected Value is " + (String) TS038.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log38 + ".jpg")).build());
+
+		// Verify the dropdown value for the Dressing Lower Body ADL
+		ArrayList TS039 = d.getData("TS039", sheetName);
+		WebElement dressingLB = driver.findElement(By.xpath((String) TS039.get(6)));
+		dressingLB.click();
+		String log39 = (String) TS039.get(0) + " " + TS039.get(2);
+		extentTest.log(Status.PASS, log39 + ": Expected Value is " + (String) TS039.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log39 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Dressing Lower Body ADL
+		ArrayList TS040 = d.getData("TS040", sheetName);
+		WebElement dailyMinsDressingLB = driver.findElement(By.xpath((String) TS040.get(6)));
+		assertEquals((String) TS040.get(7), dailyMinsDressingLB.getAttribute("value"));
+		String log40 = (String) TS040.get(0) + " " + TS040.get(2);
+		extentTest.log(Status.PASS, log40 + ": Expected Value is " + (String) TS040.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log40 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Dressing Lower Body ADL
+		ArrayList TS041 = d.getData("TS041", sheetName);
+		WebElement totalMinsDressingLB = driver.findElement(By.xpath((String) TS041.get(6)));
+		assertEquals((String) TS041.get(7), totalMinsDressingLB.getAttribute("value"));
+		String log41 = (String) TS041.get(0) + " " + TS041.get(2);
+		extentTest.log(Status.PASS, log41 + ": Expected Value is " + (String) TS041.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log41 + ".jpg")).build());
+
+		// Verify the dropdown value for the Locomotion ADL
+		ArrayList TS042 = d.getData("TS042", sheetName);
+		WebElement locomotionADL = driver.findElement(By.xpath((String) TS042.get(6)));
+		locomotionADL.click();
+		String log42 = (String) TS042.get(0) + " " + TS042.get(2);
+		extentTest.log(Status.PASS, log42 + ": Expected Value is " + (String) TS042.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log42 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Locomotion ADL
+		ArrayList TS043 = d.getData("TS043", sheetName);
+		WebElement dailyMinsLocoADL = driver.findElement(By.xpath((String) TS043.get(6)));
+		assertEquals((String) TS043.get(7), dailyMinsLocoADL.getAttribute("value"));
+		String log43 = (String) TS043.get(0) + " " + TS043.get(2);
+		extentTest.log(Status.PASS, log43 + ": Expected Value is " + (String) TS043.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log43 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Locomotion ADL
+		ArrayList TS044 = d.getData("TS044", sheetName);
+		WebElement totalMinsLocoADL = driver.findElement(By.xpath((String) TS044.get(6)));
+		assertEquals((String) TS044.get(7), totalMinsLocoADL.getAttribute("value"));
+		String log44 = (String) TS044.get(0) + " " + TS044.get(2);
+		extentTest.log(Status.PASS, log44 + ": Expected Value is " + (String) TS044.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log44 + ".jpg")).build());
+
+		// Verify the dropdown value for the Transfer Toilet ADL
+		ArrayList TS045 = d.getData("TS045", sheetName);
+		WebElement transferToiletADL = driver.findElement(By.xpath((String) TS045.get(6)));
+		transferToiletADL.click();
+		String log45 = (String) TS045.get(0) + " " + TS045.get(2);
+		extentTest.log(Status.PASS, log45 + ": Expected Value is " + (String) TS045.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log45 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Transfer Toilet ADL
+		ArrayList TS046 = d.getData("TS046", sheetName);
+		WebElement dailyMinstransferToilet = driver.findElement(By.xpath((String) TS046.get(6)));
+		assertEquals((String) TS046.get(7), dailyMinstransferToilet.getAttribute("value"));
+		String log46 = (String) TS046.get(0) + " " + TS046.get(2);
+		extentTest.log(Status.PASS, log46 + ": Expected Value is " + (String) TS046.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log46 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Transfer Toilet ADL
+		ArrayList TS047 = d.getData("TS047", sheetName);
+		WebElement totalMinstransferToilet = driver.findElement(By.xpath((String) TS047.get(6)));
+		assertEquals((String) TS047.get(7), totalMinstransferToilet.getAttribute("value"));
+		String log47 = (String) TS047.get(0) + " " + TS047.get(2);
+		extentTest.log(Status.PASS, log47 + ": Expected Value is " + (String) TS047.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log47 + ".jpg")).build());
+
+		// Verify the dropdown value for the Toileting ADL
+		ArrayList TS048 = d.getData("TS048", sheetName);
+		WebElement toileting = driver.findElement(By.xpath((String) TS048.get(6)));
+		toileting.click();
+		String log48 = (String) TS048.get(0) + " " + TS048.get(2);
+		extentTest.log(Status.PASS, log48 + ": Expected Value is " + (String) TS048.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log48 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Toileting ADL
+		ArrayList TS049 = d.getData("TS049", sheetName);
+		WebElement dailyMinsToileting = driver.findElement(By.xpath((String) TS049.get(6)));
+		assertEquals((String) TS049.get(7), dailyMinsToileting.getAttribute("value"));
+		String log49 = (String) TS049.get(0) + " " + TS049.get(2);
+		extentTest.log(Status.PASS, log49 + ": Expected Value is " + (String) TS049.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log49 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Toileting ADL
+		ArrayList TS050 = d.getData("TS050", sheetName);
+		WebElement totalMinsToileting = driver.findElement(By.xpath((String) TS050.get(6)));
+		assertEquals((String) TS050.get(7), totalMinsToileting.getAttribute("value"));
+		String log50 = (String) TS050.get(0) + " " + TS050.get(2);
+		extentTest.log(Status.PASS, log50 + ": Expected Value is " + (String) TS050.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log50 + ".jpg")).build());
+
+		// Verify the dropdown value for the Bed Mobility ADL
+		ArrayList TS051 = d.getData("TS051", sheetName);
+		WebElement bedMobility = driver.findElement(By.xpath((String) TS051.get(6)));
+		bedMobility.click();
+		String log51 = (String) TS051.get(0) + " " + TS051.get(2);
+		extentTest.log(Status.PASS, log51 + ": Expected Value is " + (String) TS051.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log51 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Bed Mobility ADL
+		ArrayList TS052 = d.getData("TS052", sheetName);
+		WebElement dailyMinsBedMobility = driver.findElement(By.xpath((String) TS052.get(6)));
+		assertEquals((String) TS052.get(7), dailyMinsBedMobility.getAttribute("value"));
+		String log52 = (String) TS052.get(0) + " " + TS052.get(2);
+		extentTest.log(Status.PASS, log52 + ": Expected Value is " + (String) TS052.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log52 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Bed Mobility ADL
+		ArrayList TS053 = d.getData("TS053", sheetName);
+		WebElement totalMinsBedMobility = driver.findElement(By.xpath((String) TS053.get(6)));
+		assertEquals((String) TS053.get(7), totalMinsBedMobility.getAttribute("value"));
+		String log53 = (String) TS053.get(0) + " " + TS053.get(2);
+		extentTest.log(Status.PASS, log53 + ": Expected Value is " + (String) TS053.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log53 + ".jpg")).build());
+
+		// Verify the dropdown value for the Eating ADL
+		ArrayList TS054 = d.getData("TS054", sheetName);
+		WebElement eatingADL = driver.findElement(By.xpath((String) TS054.get(6)));
+		eatingADL.click();
+		String log54 = (String) TS054.get(0) + " " + TS054.get(2);
+		extentTest.log(Status.PASS, log54 + ": Expected Value is " + (String) TS054.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log54 + ".jpg")).build());
+
+		// Verify the Mins per day assigned to the Eating ADL
+		ArrayList TS055 = d.getData("TS055", sheetName);
+		WebElement dailyMinsEatingADL = driver.findElement(By.xpath((String) TS055.get(6)));
+		assertEquals((String) TS055.get(7), dailyMinsEatingADL.getAttribute("value"));
+		String log55 = (String) TS055.get(0) + " " + TS055.get(2);
+		extentTest.log(Status.PASS, log55 + ": Expected Value is " + (String) TS055.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log55 + ".jpg")).build());
+
+		// Verify the Total Minutes assigned to the Eating ADL
+		ArrayList TS056 = d.getData("TS056", sheetName);
+		WebElement totalMinsEatingADL = driver.findElement(By.xpath((String) TS056.get(6)));
+		assertEquals((String) TS056.get(7), totalMinsEatingADL.getAttribute("value"));
+		String log56 = (String) TS056.get(0) + " " + TS056.get(2);
+		extentTest.log(Status.PASS, log56 + ": Expected Value is " + (String) TS056.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log56 + ".jpg")).build());
+
+		// Verify the Total Hour
+		ArrayList TS057 = d.getData("TS057", sheetName);
+		WebElement totalHrs = driver.findElement(By.xpath((String) TS057.get(6)));
+		assertEquals((String) TS057.get(7), totalHrs.getText());
+		String log57 = (String) TS057.get(0) + " " + TS057.get(2);
+		extentTest.log(Status.PASS, log57 + ": Expected Value is " + (String) TS057.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log57 + ".jpg")).build());
+
+		// Verify the Day / Week
+		ArrayList TS058 = d.getData("TS058", sheetName);
+		WebElement dayAndWeek = driver.findElement(By.xpath((String) TS058.get(6)));
+		assertEquals((String) TS058.get(7), dayAndWeek.getText());
+		String log58 = (String) TS058.get(0) + " " + TS058.get(2);
+		extentTest.log(Status.PASS, log58 + ": Expected Value is " + (String) TS058.get(7),
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot("TS058" + ".jpg")).build());
+
+		// Verify the Signature Date
+		ArrayList TS059 = d.getData("TS059", sheetName);
+		WebElement signDate = driver.findElement(By.xpath((String) TS059.get(6)));
+		System.out.println(signDate.getText());
+		signDate.isDisplayed();
+		String log59 = (String) TS059.get(0) + " " + TS059.get(2);
+		extentTest.log(Status.PASS, log59,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log59 + ".jpg")).build());
+
+		// Verify the Completeness Bar at the top of the assessment.
+		ArrayList TS060 = d.getData("TS060", sheetName);
+		WebElement completenessBar = driver.findElement(By.xpath((String) TS060.get(6)));
+		assertEquals("97%", completenessBar.getText());
+		String log60 = (String) TS060.get(0) + " " + TS060.get(2);
+		extentTest.log(Status.PASS, log60 + ": Expected Value is " + "97%",
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log60 + ".jpg")).build());
+
+		// Add a Signature into the Nurse Signature Box
+		ArrayList TS061 = d.getData("TS061", sheetName);
+		WebElement canvas = driver.findElement(By.xpath((String) TS061.get(6)));
+		Actions builder = new Actions(driver);
+		Action signature = builder.moveToElement(canvas).clickAndHold().moveByOffset(200, 50).moveByOffset(10, 0)
+				.click().build();
+		signature.perform();
+		Thread.sleep(5000);
+		String log61 = (String) TS061.get(0) + " " + TS061.get(2);
+		extentTest.log(Status.PASS, log61,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log61 + ".jpg")).build());
+
+		// Click Accept Signature Button
+		ArrayList TS062 = d.getData("TS062", sheetName);
+		WebElement acceptSign = driver.findElement(By.xpath((String) TS062.get(6)));
+		acceptSign.click();
+		String log62 = (String) TS062.get(0) + " " + TS062.get(2);
+		extentTest.log(Status.PASS, log62,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log62 + ".jpg")).build());
+
+		// Click Clear Signature Button
+		ArrayList TS063 = d.getData("TS063", sheetName);
+		WebElement clearSign = driver.findElement(By.xpath((String) TS063.get(6)));
+		clearSign.click();
+		Thread.sleep(5000);
+		String log63 = (String) TS063.get(0) + " " + TS063.get(2);
+		extentTest.log(Status.PASS, log63,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log63 + ".jpg")).build());
+
+		// Add a Signature into the Nurse Signature Box
+		ArrayList TS064 = d.getData("TS064", sheetName);
+		WebElement canvas1 = driver.findElement(By.xpath((String) TS064.get(6)));
+		Action signature1 = builder.moveToElement(canvas).clickAndHold().moveByOffset(200, 50).moveByOffset(10, 0)
+				.click().build();
+		signature.perform();
+		Thread.sleep(5000);
+		String log64 = (String) TS064.get(0) + " " + TS064.get(2);
+		extentTest.log(Status.PASS, log64,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log64 + ".jpg")).build());
+
+		// Click Accept Signature Button
+		ArrayList TS065 = d.getData("TS065", sheetName);
+		WebElement acceptSign1 = driver.findElement(By.xpath((String) TS065.get(6)));
+		acceptSign.click();
+		String log65 = (String) TS065.get(0) + " " + TS065.get(2);
+		extentTest.log(Status.PASS, log65,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log65 + ".jpg")).build());
+
+		// Hover over the Complete Assessment Button
+		ArrayList TS066 = d.getData("TS066", sheetName);
+		WebElement completeAssessment = driver.findElement(By.xpath((String) TS066.get(6)));
+		completeAssessment.click();
+		String log66 = (String) TS066.get(0) + " " + TS066.get(2);
+		extentTest.log(Status.PASS, log66,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log66 + ".jpg")).build());
+
+		// Click Welcome
+		ArrayList TS067 = d.getData("TS067", sheetName);
+		WebElement welcome = driver.findElement(By.xpath((String) TS067.get(6)));
+		welcome.click();
+		String log67 = (String) TS067.get(0) + " " + TS067.get(2);
+		extentTest.log(Status.PASS, log67,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log67 + ".jpg")).build());
+
+//		Click Sign Out 
+		ArrayList TS068 = d.getData("TS068", sheetName);
+		WebElement signOut = driver.findElement(By.xpath((String) TS068.get(6)));
+		signOut.click();
+		String log68 = (String) TS068.get(0) + " " + TS068.get(2);
+		extentTest.log(Status.PASS, log68,
+				MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(log68 + ".jpg")).build());
+
+	}
+	
 }
