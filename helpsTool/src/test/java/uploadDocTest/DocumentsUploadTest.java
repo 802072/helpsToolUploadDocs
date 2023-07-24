@@ -58,50 +58,96 @@ public class DocumentsUploadTest extends BaseTest {
 		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
 		String path = (String) filePathRow.get(1);
 		uploadAndSubmitFile(fileName, path);
-		verifyInfo("TC01");
+		verifyInfo("TC01", "SampleData1");
 	}
 
 	// File Sample-2
 	@Test
 	public void verifyInfoSample2() throws InterruptedException, IOException, AWTException {
 		login();
-		ArrayList filenameRow = d.getData("FileName", "TC");
+		ArrayList filenameRow = d.getData("FileName", "beforeTest");
 		String fileName = (String) filenameRow.get(2);
-		ArrayList filePathRow = d.getData("FilePath", "TC");
+		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
 		String path = (String) filePathRow.get(2);
 		uploadAndSubmitFile(fileName, path);
-		verifyInfo("TC02");
-
+		verifyInfo("TC02", "SampleData2");
 	}
 
+	// File Sample-3
 	@Test
-	public void verifyUploadSample3() throws InterruptedException, IOException, AWTException {
-
+	public void verifyInfoSample3() throws InterruptedException, IOException, AWTException {
+		login();
+		ArrayList filenameRow = d.getData("FileName", "beforeTest");
+		String fileName = (String) filenameRow.get(3);
+		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
+		String path = (String) filePathRow.get(3);
+		uploadAndSubmitFile(fileName, path);
+		verifyInfo("TC03", "SampleData3");
 	}
 
+
+	// File Sample-4
 	@Test
-	public void verifyUploadSample4() throws InterruptedException, IOException, AWTException {
-
+	public void verifyInfoSample4() throws InterruptedException, IOException, AWTException {
+		login();
+		ArrayList filenameRow = d.getData("FileName", "beforeTest");
+		String fileName = (String) filenameRow.get(4);
+		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
+		String path = (String) filePathRow.get(4);
+		uploadAndSubmitFile(fileName, path);
+		verifyInfo("TC04", "SampleData4");
 	}
 
+	// File Sample-5
 	@Test
-	public void verifyUploadSample5() throws InterruptedException, IOException, AWTException {
-
+	public void verifyInfoSample5() throws InterruptedException, IOException, AWTException {
+		login();
+		ArrayList filenameRow = d.getData("FileName", "beforeTest");
+		String fileName = (String) filenameRow.get(5);
+		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
+		String path = (String) filePathRow.get(5);
+		uploadAndSubmitFile(fileName, path);
+		verifyInfo("TC05", "SampleData5");
 	}
-
+	
+	// File Sample-6
 	@Test
-	public void verifyUploadSample6() throws InterruptedException, IOException, AWTException {
-
+	public void verifyInfoSample6() throws InterruptedException, IOException, AWTException {
+		login();
+		ArrayList filenameRow = d.getData("FileName", "beforeTest");
+		String fileName = (String) filenameRow.get(6);
+		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
+		String path = (String) filePathRow.get(6);
+		uploadAndSubmitFile(fileName, path);
+		verifyInfo("TC02", "SampleData6");
 	}
-
+	
+	// File Sample-7
 	@Test
-	public void verifyUploadSample7() throws InterruptedException, IOException, AWTException {
-
+	public void verifyInfoSample7() throws InterruptedException, IOException, AWTException {
+		login();
+		ArrayList filenameRow = d.getData("FileName", "beforeTest");
+		String fileName = (String) filenameRow.get(7);
+		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
+		String path = (String) filePathRow.get(7);
+		uploadAndSubmitFile(fileName, path);
+		verifyInfo("TC02", "SampleData7");
 	}
-
+	
+	// File Sample-8
 	@Test
-	public void verifyUploadSample8() throws InterruptedException, IOException, AWTException {
-
+	public void verifyInfoSample8() throws InterruptedException, IOException, AWTException {
+		login();
+		ArrayList filenameRow = d.getData("FileName", "beforeTest");
+		String fileName = (String) filenameRow.get(8);
+		ArrayList filePathRow = d.getData("FilePath", "beforeTest");
+		String path = (String) filePathRow.get(8);
+		uploadAndSubmitFile(fileName, path);
+		verifyInfo("TC02", "SampleData8");
 	}
-
+	
+	@AfterTest ()
+	public void tearup() {
+		driver.close();
+	}
 }
