@@ -20,7 +20,7 @@ public class DataDrivenHT {
 		ArrayList<String> a = new ArrayList<String>();
 
 		FileInputStream fis = new FileInputStream(
-				"C:\\Users\\802072\\git\\helpsToolUploadDocs\\helpsTool\\src\\test\\resources\\testCases\\helpsToolDocUploadTC.xlsx");
+				System.getProperty("user.dir")+"\\src\\test\\resources\\testCases\\helpsToolDocUploadTC.xlsx");
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 		int sheets = workbook.getNumberOfSheets();
@@ -46,7 +46,7 @@ public class DataDrivenHT {
 				}
 				System.out.println("sheet name is :" + workbook.getSheetName(i));
 				System.out.println("column is :" + column);
-
+				workbook.close();
 				while (rows.hasNext()) {
 
 					Row r = rows.next();
@@ -72,8 +72,11 @@ public class DataDrivenHT {
 		}
 		System.out.println("The value is" + a);
 		return a;
+		
+		
 	}
 
+	
 	public static void main(String[] args) throws IOException {
 	}
 	
